@@ -1,0 +1,16 @@
+limpiar
+color azul
+escribir --- SISTEMA DE SEGURIDAD SAUCITO ---
+color reset
+
+preguntar clave Escribe la contraseña secreta:
+
+si clave == 1234
+    color verde
+    escribir Acceso concedido. ¡Bienvenido!
+    dibujar 5
+
+si clave != 1234
+    color rojo
+    escribir Error: Intruso detectado.
+    color reset

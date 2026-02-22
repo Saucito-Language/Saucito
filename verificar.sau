@@ -1,0 +1,18 @@
+limpiar
+n = 1
+color verde
+escribir --- Iniciando prueba de bucle ---
+
+repetir n <= 5
+    color azul
+    escribir Dibujo numero:
+    escribir n
+    dibujar n
+    # Esta linea es vital para que no sea infinito:
+    n = n + 1
+    esperar 0.5
+finrepetir
+
+color amarillo
+escribir --- Prueba terminada con exito ---
+color reset
