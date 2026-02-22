@@ -1,0 +1,6 @@
+# Programa de prueba completo
+escribir ¡Bienvenido a Saucito!
+nombre = leer ¿Cómo te llamas?
+escribir Hola, nombre
+escribir Vamos a dibujar un cuadrado del tamaño de tu nombre:
+dibujar nombre

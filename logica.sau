@@ -1,0 +1,5 @@
+edad = leer ¿Cuántos años tienes?
+si edad > 17
+escribir Eres mayor de edad, puedes entrar.
+si edad < 18
+escribir Eres menor, no puedes entrar.
