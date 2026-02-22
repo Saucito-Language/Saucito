@@ -1,0 +1,15 @@
+limpiar
+color amarillo
+escribir Preparando al Capibara...
+esperar 1
+escribir 3...
+esperar 1
+escribir 2...
+esperar 1
+escribir 1...
+esperar 1
+limpiar
+color verde
+escribir ¡EL CAPIBARA ESTA LISTO!
+dibujar 10
+color reset

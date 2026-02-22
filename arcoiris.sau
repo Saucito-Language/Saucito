@@ -1,0 +1,7 @@
+limpiar
+color verde
+escribir --- MODO CAPIBARA ACTIVADO ---
+color azul
+dibujar 5
+color reset
+escribir Programa terminado con éxito.

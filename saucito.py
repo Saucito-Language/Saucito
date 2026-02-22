@@ -1,6 +1,16 @@
 import sys
+import os
+import time
 
 # --- MOTOR DE FUNCIONES ---
+# --- COLORES ---
+colores = {
+    "verde": "\033[92m",
+    "rojo": "\033[91m",
+    "azul": "\033[94m",
+    "amarillo": "\033[93m",
+    "reset": "\033[0m"
+}
 
 def escribir(*args, sep=" "):
     resultado = sep.join(str(a) for a in args)
@@ -55,9 +65,9 @@ variables = {}
 saltar_linea = False
 
 def mostrar_logo():
-    logo = """
+    logo = r"""
     #########################################
-    #     ____                        _ _   #
+    #     ____                              #
     #    / ___|  __ _ _   _  ___(_) |_ ___  #
     #    \___ \ / _` | | | |/ __| | __/ _ \ #
     #     ___) | (_| | |_| | (__| | || (_) |#
@@ -68,15 +78,20 @@ def mostrar_logo():
     """
     print(logo)
 
+
+
 # Y lo llamas al inicio de ejecutar_codigo_sau
 def ejecutar_codigo_sau(archivo_nombre):
     mostrar_logo()
+    time.sleep(5)
     global saltar_linea
     try:
         with open(archivo_nombre, "r", encoding="utf-8") as f:
             for num_linea, linea in enumerate(f, 1):
                 linea = linea.strip()
                 if not linea or linea.startswith("#"): continue
+
+
 
                 # Si el 'si' anterior falló, saltamos esta línea
                 if saltar_linea:
@@ -103,6 +118,14 @@ def ejecutar_codigo_sau(archivo_nombre):
                 partes = linea.split(" ", 1)
                 comando = partes[0]
                 args = partes[1].strip() if len(partes) > 1 else ""
+                # --- COMANDO: COLOR ---
+                if comando == "color":
+                    # Uso: color verde
+                    if args in colores:
+                        print(colores[args], end="")
+                    elif args == "reset":
+                        print(colores["reset"], end="")
+                    continue
 
                 if comando == "si":
                     c_partes = args.split(" ")
@@ -113,6 +136,21 @@ def ejecutar_codigo_sau(archivo_nombre):
                         if not si_funcion(v1, op, v2):
                             saltar_linea = True
                     continue
+                    # --- COMANDO: ESPERAR ---
+
+                elif comando == "limpiar":
+                    # 'nt' significa Windows. Si es Windows usa 'cls', si no 'clear'
+                    os.system('cls' if os.name == 'nt' else 'clear')
+                    continue
+
+                elif comando == "esperar":
+                    try:
+                        # Convertimos el argumento a segundos (ejemplo: esperar 2)
+                        segundos = float(variables.get(args, args))
+                        time.sleep(segundos)
+                    except ValueError:
+                        print(f"Error: '{args}' no es un tiempo válido.")
+
 
                 elif comando == "escribir":
                     if "," in args:
